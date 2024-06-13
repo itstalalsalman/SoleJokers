@@ -7,12 +7,12 @@ const Navbar = () => {
     <div className='w-full h-[90px] flex justify-between items-center'>  
         <img src={SoleJokerPNG}  className='w-[100px] h-full ml-28' alt='logo' />
         <div className='h-full w-[500px] flex justify-end items-center gap-4 mr-28'>
-            <ul className='flex justify-center items-center gap-10 mr-3'>
+            <ul className='flex justify-center items-center gap-10 mr-3 font-semibold'>
               <li>Home</li>
               <li>Shop</li>
               <li>Brands</li>
             </ul>
-            <button className='w-[150px] h-[50px]'>Login</button>
+            <button className='w-[130px] h-[45px] font-semibold text-[#529CDF] border-[3px] border-black rounded-xl rounded-br-[50px] hover:bg-[#529CDF] hover:text-white hover:transition-colors duration-200 ease-in'>Login</button>
             <img src={cart} className='w-[50px] h-[35px]' alt='cart' />
         </div>
     </div>

@@ -23,7 +23,9 @@ const Hero = () => {
                 <h1 className='font-extrabold text-[100px]'>SoleJokers</h1>
                 <p className='font-semibold text-[#529CDF] text-[30px]'>Where your feet get funny and funky!</p>
                 <p className='font-medium text-[24px] mt-14'>Dive into our exclusive collections and find your perfect pair.</p>
-                <button className='mt-5 w-[180px] h-[50px] font-semibold'>Shop Now</button>
+                <button className='mt-5 w-[180px] h-[50px] font-semibold text-[#529CDF] border-[3px] border-black rounded-xl rounded-br-[50px] hover:bg-[#529CDF] hover:text-white hover:transition-colors duration-200 ease-in'>
+                    Shop Now
+                </button>
             </motion.div>
             <Jordans />
             <button className='absolute bottom-0 left-auto w-[50px] h-[50px] flex items-center justify-center bg-[#529CDF] rounded-3xl bounce'>

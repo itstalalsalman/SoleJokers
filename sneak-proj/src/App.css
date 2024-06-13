@@ -13,3 +13,10 @@
   .bounce {
     animation: bounce 2s infinite;
   }
+
+  .btn-color-switch:hover{
+    border: none;
+    background-color: #529CDF;
+    color: white;
+    transition: background-color  0.5ms ease-in;
+  }
