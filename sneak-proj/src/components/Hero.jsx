@@ -2,6 +2,7 @@ import React, { useEffect, lazy } from 'react';
 import { motion, useAnimation } from "framer-motion";
 import { slideAnimation } from '../config/motion';
 import { IoIosArrowDown } from "react-icons/io";
+import { Link } from 'react-router-dom';
 
 const Jordans = lazy(() => import('./canvas/Jordans'))
 
@@ -24,7 +25,7 @@ const Hero = () => {
                 <p className='font-semibold text-[#529CDF] text-[30px]'>Where your feet get funny and funky!</p>
                 <p className='font-medium text-[24px] mt-14'>Dive into our exclusive collections and find your perfect pair.</p>
                 <button className='mt-5 w-[180px] h-[50px] font-semibold text-[#529CDF] border-[3px] border-black rounded-xl rounded-br-[50px] hover:bg-[#529CDF] hover:text-white hover:transition-colors duration-200 ease-in'>
-                    Shop Now
+                    <Link to='/shop'>Shop Now</Link>
                 </button>
             </motion.div>
             <Jordans />

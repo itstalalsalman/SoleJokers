@@ -20,3 +20,26 @@
     color: white;
     transition: background-color  0.5ms ease-in;
   }
+
+  .nav-item{
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 32px;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: black;
+    transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);      
+  }
+
+  .nav-item:hover::after {
+      width: 100%;
+  }
