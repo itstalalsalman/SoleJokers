@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ModalContext } from '../App';
 import Vans from './canvas/Vans'
 
 const AboutUs = () => {
+  const { setIsModalOpen } = useContext(ModalContext);
+
   return (
     <div className='w-full h-[100vh] flex items-center justify-center'>
         <Vans />
@@ -15,7 +18,10 @@ const AboutUs = () => {
                 Whether you're looking for bold patterns, vibrant colors, or playful designs, we've got something that 
                 will tickle your toes and your funny bone. <b>Join us at SoleJoker</b>, where your sneaker game gets a hilarious upgrade!
             </p>
-            <button className='mt-5 w-[180px] h-[50px] font-semibold text-[#529CDF] border-[3px] border-black rounded-xl rounded-br-[50px] hover:bg-[#529CDF] hover:text-white hover:transition-colors duration-200 ease-in'>
+            <button 
+              className='mt-5 w-[180px] h-[50px] font-semibold text-[#529CDF] border-[3px] border-black rounded-xl rounded-br-[50px] hover:bg-[#529CDF] hover:text-white hover:transition-colors duration-200 ease-in'
+              onClick={() => setIsModalOpen(true)}
+            >
                 Be a SoleJoker
             </button>
         </div>  
