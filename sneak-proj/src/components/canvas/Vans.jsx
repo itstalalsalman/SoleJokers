@@ -6,7 +6,8 @@ import Loader from '../Loader'
 const Model = () => {
   const { scene } = useGLTF('./unused_blue_vans_shoe/scene.gltf') // Replace with the path to your .gltf file
   if (scene) {
-    scene.rotation.y = Math.PI / 2; // Adjust this angle to rotate correctly
+    scene.rotation.y = Math.PI / 3; // Adjust this angle to rotate correctly
+    scene.rotation.x = Math.PI / 18; // Adjust this angle to rotate correctly
   }
   return <primitive object={scene} scale={0.9} position={[0, -0.8, 0]}/>
 }

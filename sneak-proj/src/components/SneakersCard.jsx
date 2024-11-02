@@ -1,20 +1,26 @@
 import React from 'react';
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowRoundForward } from "react-icons/io";
 
 
 const SneakerCard = ({ sneaker, onSneakerClick }) => {
+  
   const handleClick = () => {
     onSneakerClick(sneaker); // Pass the sneaker object to the parent component
   };
 
+  console.log("asd",sneaker.image_paths[0])
   return (
-    <div className="w-[280px] h-[400px] flex flex-col justify-start items-center shadow-2xl rounded-xl relative">
-      <img src={sneaker.image_path} alt={sneaker.name} className='w-[220px] h-[270px] rounded-xl mt-5'/>
-      <div className='w-[210px] mt-3 '>
-        <h2 className='font-semibold text-[18px]'>{sneaker.name}</h2>
-        <p>${sneaker.price}</p>
+    <div className="w-[280px] h-[400px] flex flex-col justify-start items-center shadow-2xl rounded-xl relative ">
+      <img src={`http://localhost:5000${sneaker.image_paths[0]}`} alt={sneaker.name} className='w-[220px] h-[270px] rounded-xl mt-5'/>
+      <div className='w-[210px] mt-6 flex justify-between items-center'>
+        <div className='flex flex-col justify-center items-start'>
+          <h2 className='font-medium text-[14px]'>{sneaker.name}</h2>
+          <p className='font-semibold'>${sneaker.price}</p>
+        </div>
+        <div className='w-10 h-10 rounded-full flex justify-center items-center bg-white text-[#529CDF] border-[3px] border-black hover:bg-[#529CDF] hover:text-white hover:transition-colors duration-200 ease-in cursor-pointer' onClick={handleClick}>
+          <IoIosArrowRoundForward className='text-[25px]' />
+        </div>
       </div>
-      <IoIosArrowDown style={{color:'black', fontWeight: 'bolder', fontSize: '24px', position: 'absolute', bottom: 0, marginBottom: '10px', cursor: 'pointer'}} onClick={handleClick}/>
     </div>
   );
 };
