@@ -1,10 +1,11 @@
-import React, { useEffect, lazy } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { motion, useAnimation } from "framer-motion";
 import { slideAnimation } from '../config/motion';
 import { IoIosArrowDown } from "react-icons/io";
 import { Link } from 'react-router-dom';
+import { Loader } from '@react-three/drei';
 
-const Jordans = lazy(() => import('./canvas/Jordans'))
+const Jordans = lazy(() => import('./canvas/Jordans'));
 
 const Hero = () => {
     const controls = useAnimation();
@@ -28,7 +29,9 @@ const Hero = () => {
                     <Link to='/shop'>Shop Now</Link>
                 </button>
             </motion.div>
-            <Jordans />
+            <Suspense fallback={<Loader />}>
+                <Jordans />
+            </Suspense>
             <button className='absolute bottom-0 left-auto w-[50px] h-[50px] flex items-center justify-center bg-[#529CDF] rounded-3xl bounce'>
                 <IoIosArrowDown style={{color:'white', fontWeight: 'bolder', fontSize: '24px'}}/>
             </button>

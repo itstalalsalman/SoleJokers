@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Shop from './components/Shop';
 import Brands from './components/Brands';
 import LoginModal from './components/LoginModal';
+import Footer from './components/Footer';
 
 export const ModalContext = createContext();
 
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/shop" element={<Shop />} />
           <Route path="/brands" element={<Brands />} />
         </Routes>
+        <Footer />
         {isModalOpen && <LoginModal />}
       </Router>
     </ModalContext.Provider>

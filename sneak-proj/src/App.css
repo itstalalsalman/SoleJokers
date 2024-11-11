@@ -103,3 +103,396 @@
 .inter{
   font-family: "Inter", sans-serif;
 }
+
+/* From Uiverse.io by alexroumi */ 
+.btnContinueShopping, .btnCheckout {
+  padding: 10px 15px;
+  border: unset;
+  border-radius: 15px;
+  color: #212121;
+  z-index: 1;
+  background: white;
+  position: relative;
+  font-weight: 1000;
+  font-size: 14px;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  transition: all 250ms;
+  overflow: hidden;
+ }
+ 
+ .btnContinueShopping::before , .btnCheckout::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  border-radius: 15px;
+  background-color: #529CDF;
+  z-index: -1;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  transition: all 250ms
+ }
+ 
+ .btnContinueShopping:hover , .btnCheckout:hover {
+  color: #e8e8e8;
+ }
+ 
+ .btnContinueShopping:hover::before, .btnCheckout:hover::before {
+  width: 100%;
+ }
+
+ .box {
+  position: relative;
+  width: 250px;
+  height: 330px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+  z-index: 1;
+ }
+ 
+ .box::before {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  left: 50px;
+  width: 50%;
+  height: 100%;
+  text-decoration: none;
+  background: #fff;
+  border-radius: 8px;
+  transform: skewX(15deg);
+  transition: 0.5s;
+ }
+ 
+ .box::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50;
+  width: 50%;
+  height: 100%;
+  background: #fff;
+  border-radius: 8px;
+  transform: skewX(15deg);
+  transition: 0.5s;
+  filter: blur(30px);
+ }
+ 
+ .box:hover:before,
+ .box:hover:after {
+  transform: skewX(0deg) scaleX(1.3);
+ }
+ 
+ .box:before,
+ .box:after {
+  background: linear-gradient(315deg, #000, #529CDF)
+ }
+ 
+ .box span {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  pointer-events: none;
+ }
+ 
+ .box span::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transition: 0.1s;
+  animation: animate 2s ease-in-out infinite;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08)
+ }
+ 
+ .box span::before {
+  top: -40px;
+  left: 40px;
+  width: 50px;
+  height: 50px;
+  opacity: 1;
+ }
+ 
+ .box span::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transition: 0.5s;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  animation-delay: -1s;
+ }
+ 
+ .box span:after {
+  bottom: -40px;
+  right: 40px;
+  width: 50px;
+  height: 50px;
+  opacity: 1;
+ }
+ 
+ .box .content {
+  position: relative;
+  width: 220px;
+  height: 274px;
+  padding: 20px 40px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  z-index: 1;
+  transform: 0.5s;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+ 
+ .box .content h2 {
+  font-size: 20px;
+  color: #fff;
+  margin-bottom: 10px;
+ }
+
+
+ .button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Common styles for both buttons */
+.brutalist-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  color: #e5dede;
+  font-weight: bold;
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Styles for the first button */
+.button-1 {
+  background-color: white;
+  border: 3px solid #529CDF;
+  border-radius: 12px;
+  box-shadow: 4px 4px 1px #000000;
+}
+
+.button-1:hover {
+  background-color: #529CDF;
+  border-color: #030504;
+  transform: translate(-6px, -6px) rotate(1deg);
+  box-shadow: 10px 10px 0 #000000, 15px 15px 20px rgba(64, 164, 122, 0.2);
+}
+
+.button-1::before,
+.button-1::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: 0.6s;
+}
+
+.button-1::before {
+  left: -100%;
+}
+.button-1::after {
+  left: 100%;
+}
+
+.button-1:hover::before {
+  animation: swipeRight 1.5s infinite;
+}
+.button-1:hover::after {
+  animation: swipeLeft 1.5s infinite;
+}
+
+@keyframes swipeRight {
+  100% {
+    transform: translateX(200%) skew(-45deg);
+  }
+}
+
+@keyframes swipeLeft {
+  100% {
+    transform: translateX(-200%) skew(-45deg);
+  }
+}
+
+/* Hover effects */
+.brutalist-button:hover .solejoker-logo {
+  transform: translateY(-2px);
+}
+
+.brutalist-button:hover .solejoker-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.bruta.brutalist-button:hover .solejoker-text {
+  opacity: 1;
+  max-height: 30px;
+  margin-top: 8px;
+}
+
+
+/* Styles for the OurCollection Button logo and text */
+.solejoker-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 3;
+}
+
+.solejoker-icon {
+  width: 80px;
+  height: 80px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.solejoker-text {
+  font-size: 24px;
+  letter-spacing: 0.5px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.button-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.2;
+  text-align: center;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 3;
+}
+
+.button-text span:first-child {
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.button-text span:last-child {
+  font-size: 18px;
+}
+
+/* Hover effects */
+.brutalist-button:hover .solejoker-logo {
+  transform: translateY(-5px);
+}
+
+.brutalist-button:hover .solejoker-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.brutalist-button:hover .button-text,
+.brutalist-button:hover .openai-text {
+  opacity: 1;
+  max-height: 60px;
+  margin-top: 8px;
+}
+
+/* Animation for the OpenAI logo */
+@keyframes spin-and-zoom {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.5);
+  }
+  100% {
+    transform: rotate(360deg) scale(1.2);
+  }
+}
+
+.brutalist-button:hover .solejoker-icon {
+  animation: spin-and-zoom 4s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
+}
+
+.brutalist-button:hover .solejoker-text {
+  text-shadow: 2px 2px 4px white;
+}
+
+.brutalist-button:active .solejoker-icon,
+.brutalist-button:active .solejoker-text,
+.brutalist-button:active .button-text {
+  transform: scale(0.95);
+}
+
+
+/* bounce animation for the footer icons  */
+
+@keyframes bounce_613 {
+  40% {
+    transform: scale(1.4);
+  }
+
+  60% {
+    transform: scale(0.8);
+  }
+
+  80% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.social-link-1:hover, .aboutUs:hover{
+  animation: bounce_613 0.4s linear;
+}
+
+.social-link-2:hover , .ourJourney:hover{
+  animation: bounce_613 0.4s linear;
+}
+
+.social-link-3:hover, .funkIt:hover{
+  animation: bounce_613 0.4s linear;
+}

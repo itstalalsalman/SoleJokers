@@ -1,6 +1,11 @@
 import React from 'react'
+import { adidasLogo, nikeLogo, vansLogo, SoleJokerPNG } from '../assets'
+import { Link } from 'react-router-dom'
 
 const OurCollection = () => {
+
+  const shoeCollection = [adidasLogo, nikeLogo, vansLogo]
+
   return (
     <div className='w-full flex flex-col justify-center items-center mt-28'>
         <h1 className='font-extrabold text-[80px]'>Our Collection</h1>
@@ -10,9 +15,34 @@ const OurCollection = () => {
             you smile with every step.
         </p>
         <p className='font-medium text-[20px]'>Shop now and join the SoleJoker family!</p>
-        <div className='w-[80%] h-[400px] mb-16 mt-4'> {/* Carousel */}
-        
+        <div className='w-[80%] h-[400px] mb-16 mt-14 flex flex-row justify-evenly items-center'> 
+          {shoeCollection.map((item) => (
+            <div className="box">
+              <span></span>
+              <div className="content cursor-pointer">
+                  <img src={item} alt='main-logo-collections'/>                
+              </div>
+            </div>
+            ))
+          }
         </div>
+
+        <div class="button-container bounce">
+          <button class="brutalist-button solejoker button-1">
+            <div class="solejoker-logo">
+              <img
+                className="solejoker-icon"
+                src={SoleJokerPNG}
+                alt='img-btnMore'
+              />
+            </div>
+            <div class="button-text">
+              <span>See more of</span>
+              <span>SoleJokers</span>
+            </div>
+          </button>
+        </div>
+
     </div>
   )
 }

@@ -6,10 +6,11 @@ import { IoMdHeart } from "react-icons/io";
 
 const ShoeDetailCard = ({ selectedSneaker, onClose }) => {
   if (!selectedSneaker) return null;
+  const [isBuying, setIsBuying] = useState(false);
 
   const [mainImg, setMainImg] = useState(selectedSneaker.image_paths[0]);
 
-
+  
   return (
     <div className="fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center z-50 bg-black bg-opacity-50">
       <div className="flex gap-5 bg-white p-8 rounded-lg shadow-lg w-[75%] h-[550px]  max-h-3/4 overflow-y-auto sneaker-detail relative">
@@ -41,11 +42,19 @@ const ShoeDetailCard = ({ selectedSneaker, onClose }) => {
             <h2 className="text-4xl font-bold mb-4">{selectedSneaker.name}</h2>
             <p className="text-gray-700 mb-2 text-center">{selectedSneaker.description}</p>
             <div className='w-full h-[70px] flex justify-between items-center px-8'>
-              <p className="text-black text-2xl font-semibold">${selectedSneaker.price}</p>
-              <div className='flex justify-center items-center gap-5'>
-                  <button className='w-10 h-10 rounded-full flex justify-center items-center text-[#529CDF] border-[3px] border-black hover:bg-[#529CDF] hover:text-white hover:transition-colors duration-200 ease-in cursor-pointer'><IoMdHeart /></button>
-                  <button className='w-10 h-10 rounded-full flex justify-center items-center text-[#529CDF] border-[3px] border-black hover:bg-[#529CDF] hover:text-white hover:transition-colors duration-200 ease-in cursor-pointer'><IoIosCart /></button>
-              </div>
+              <p className="text-[#529CDF] text-3xl font-bold ">${selectedSneaker.price}</p>
+              { !isBuying && 
+                <div className='flex justify-center items-center gap-5'>
+                    <button className='w-10 h-10 rounded-full flex justify-center items-center text-[#529CDF] border-[3px] border-black hover:bg-[#529CDF] hover:text-white hover:transition-colors duration-200 ease-in cursor-pointer'><IoMdHeart /></button>
+                    <button onClick={() => {setIsBuying(true)}} className='w-10 h-10 rounded-full flex justify-center items-center text-[#529CDF] border-[3px] border-black hover:bg-[#529CDF] hover:text-white hover:transition-colors duration-200 ease-in cursor-pointer'><IoIosCart /></button>
+                </div>
+              }
+              { isBuying &&
+                <div className='flex justify-center items-center gap-5'>
+                    <button className='btnContinueShopping animate-bounceIn' onClick={onClose}>Continue Shopping</button>
+                    <button className='btnCheckout animate-bounceIn delay-100'>Checkout</button> 
+                </div>
+              }
             </div>
         </div>
       </div>

@@ -52,7 +52,7 @@ const LoginModal = () => {
         <div className={`transition-all h-full duration-500 ease-in-out flex flex-col justify-center items-center bg-[#529CDF] text-white ${
             isRegisterView ? 'w-[60%] opacity-100' : 'w-[40%] opacity-100'
           } rounded-tl-xl rounded-bl-xl rounded-tr-lg rounded-br-lg gap-5`}>
-            <h2 className={`text-5xl font-extrabold text-white italic text-center leading-[60px] ${isRegisterView && 'text-[30px]'}`}>{isRegisterView ? 'Register' : 'New to SoleJokers?'}</h2>
+            <h2 className={`text-5xl w-[350px] font-extrabold text-white italic text-center leading-[60px] ${isRegisterView && 'text-[30px]'}`}>{isRegisterView ? 'Register' : 'New to SoleJokers?'}</h2>
             {isRegisterView ? (
             <form className="w-[80%] flex flex-col justify-center items-start">
               <label className="block text-sm font-semibold mb-2 italic">Email</label>
