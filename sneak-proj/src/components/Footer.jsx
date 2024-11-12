@@ -3,7 +3,6 @@ import { SoleJokerPNG, linkedinLogo, instagramLogo, githubLogo } from '../assets
 
 const Footer = () => {
 
-  
   return (
     <footer className='w-full h-[40vh] flex justify-center items-center border-t-2 border-[rgba(0,0,0,0.1)]'>
       <div className='w-[20%] h-full flex flex-col justify-center items-center'>

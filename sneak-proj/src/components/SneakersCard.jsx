@@ -1,10 +1,15 @@
 import React from 'react';
 import { IoIosArrowRoundForward } from "react-icons/io";
+import { useStore } from '../../store';
 
-const SneakerCard = ({ sneaker, onSneakerClick }) => {
+const SneakerCard = ({ sneaker }) => {
   
+  const setSelectedSneaker = useStore((state) => state.setSelectedSneaker);
+  const setIsModalOpen = useStore((state) => state.setIsModalOpen);
+
   const handleClick = () => {
-    onSneakerClick(sneaker); // Pass the sneaker object to the parent component
+    setSelectedSneaker(sneaker); // Setting the selected sneaker in the store
+    setIsModalOpen(true);
   };
 
   console.log("asd",sneaker.image_paths[0])

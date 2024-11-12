@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
 import { ModalContext } from '../App';
 import Vans from './canvas/Vans'
+import { useStore } from '../../store';
 
 const AboutUs = () => {
-  const { setIsModalOpen } = useContext(ModalContext);
+  const { setIsModalOpen } = useStore();
 
   return (
     <div className='w-full h-[100vh] flex items-center justify-center'>

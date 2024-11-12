@@ -1,12 +1,12 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { SoleJokerPNG } from '../assets'
 import { cart } from '../assets'
-import { ModalContext } from '../App';
+import { useStore } from '../../store'
 
 
 const Navbar = () => {
-  const { setIsModalOpen } = useContext(ModalContext);
+  const { setIsModalOpen } = useStore();
 
   return (
     <div className='w-full h-[90px] flex justify-between items-center'>  

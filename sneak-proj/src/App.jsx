@@ -7,11 +7,12 @@ import Shop from './components/Shop';
 import Brands from './components/Brands';
 import LoginModal from './components/LoginModal';
 import Footer from './components/Footer';
+import { useStore } from '../store';
 
 export const ModalContext = createContext();
 
 const App = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isModalOpen, setIsModalOpen } = useStore();
 
   return (
     <ModalContext.Provider value={{ isModalOpen, setIsModalOpen }}>

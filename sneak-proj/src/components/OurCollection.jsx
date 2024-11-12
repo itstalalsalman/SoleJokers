@@ -1,10 +1,9 @@
 import React from 'react'
 import { adidasLogo, nikeLogo, vansLogo, SoleJokerPNG } from '../assets'
-import { Link } from 'react-router-dom'
 
 const OurCollection = () => {
 
-  const shoeCollection = [adidasLogo, nikeLogo, vansLogo]
+  const shoeCollection = [adidasLogo, nikeLogo, vansLogo];
 
   return (
     <div className='w-full flex flex-col justify-center items-center mt-28'>
