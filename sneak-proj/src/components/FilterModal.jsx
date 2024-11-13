@@ -24,12 +24,9 @@ const FilterModal = () => {
       setIsOpen(false);
     };
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-    
+
     return (
-      <div className="w-[80%] h-[50px] flex justify-end items-center">
+      <div className="w-[80%] h-[50px] flex justify-end items-center mb-8">
         <button
           className="w-[100px] h-[40px] p-2 bg-white rounded-full shadow-2xl border-black border-2 flex justify-center items-center gap-4 font-semibold italic text-[#529CDF] hover:bg-[#529CDF] hover:text-white hover:transition-colors duration-200 ease-in"
           onClick={() => setIsOpen(!isOpen)}

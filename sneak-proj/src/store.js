@@ -3,6 +3,10 @@ import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
 const store = (set, get) => ({
+    //object loading states
+    isObjectLoaded: false,
+    setIsObjectLoaded: (value) => set({isObjectLoaded: value}),
+
     // Modal state
     isModalOpen: false,
     setIsModalOpen: (value) => set({ isModalOpen: value }),
@@ -15,6 +19,10 @@ const store = (set, get) => ({
     //Showing Logged In Avatar hover states
     isMouseOnAvatar: false,
     setIsMouseOnAvatar: (value) => set({ isMouseOnAvatar: value }),
+
+    //Showing cart icon hover states
+    isMouseOnCart: false,
+    setIsMouseOnCart: (value) => set({ isMouseOnCart: value }),
 
     // Other state variables
     sneakers: [],
@@ -67,18 +75,19 @@ const store = (set, get) => ({
     // Fetching filtered sneakers based on the current filter state
     fetchFilteredSneakers: async () => {
         try {
-          const { selectedBrands, priceRange } = get();
-          const params = {};
-          if (selectedBrands.length > 0) params.brands = selectedBrands;
-          if (priceRange.min) params.minPrice = priceRange.min;
-          if (priceRange.max) params.maxPrice = priceRange.max;
-    
-          const response = await axios.get('http://localhost:5000/api/shoes/showFilter', { params });
-          set({ sneakers: response.data, loading: false });
-        } catch (error) {
-          console.error('Error fetching sneakers:', error);
-          set({ error: 'Failed to load sneakers', loading: true });
-        }
+            set({ loading: true });
+            const { selectedBrands, priceRange } = get();
+            const params = {};
+            if (selectedBrands.length > 0) params.brands = selectedBrands;
+            if (priceRange.min) params.minPrice = priceRange.min;
+            if (priceRange.max) params.maxPrice = priceRange.max;
+        
+            const response = await axios.get('http://localhost:5000/api/shoes/showFilter', { params });
+            set({ sneakers: response.data, loading: false });
+            } catch (error) {
+            console.error('Error fetching sneakers:', error);
+            set({ error: 'Failed to load sneakers', loading: true });
+            }
       },
 
     resetFilters: () => {
@@ -98,4 +107,6 @@ const log = (config) => (set,get,api) => config(
     api,
 );
 
-export const useStore = create(log(persist(devtools(store), {name: "store"})));
+export const useStore = create(store);
+
+// export const useStore = create(log(persist(devtools(store), {name: "store"})));

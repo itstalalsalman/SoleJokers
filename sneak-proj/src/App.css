@@ -19,6 +19,12 @@
   background: #529CDF; 
 }
 
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
     transform: translateY(0);
@@ -502,6 +508,41 @@
     animation: openHeight 0.3s ease-in-out;
 }
 
+.animate-cart{
+    animation: openCartModal 0.3s forwards ease-in;
+}
+
+@keyframes openCartModal{
+  0% {
+    width: 0px;
+  }
+  10% {
+    width: 50px;
+  }
+  20% {
+    width: 100px;
+  }
+  30% {
+    width: 150px;
+  }
+  40% {
+    width: 200px;
+  }
+
+  60% {
+    width: 250px;
+  }
+
+  80% {
+    width: 300px;
+    transform: scale(1.1);
+  }
+
+  100% {
+    width: 350px;
+    transform: scale(1);
+  }
+}
 
 @keyframes openHeight{
   0% {
@@ -558,4 +599,21 @@
   100%{
     opacity: 1;
   }
+}
+
+/* Shop Card Grid Layout*/
+.shop-heading{
+  font-weight: bolder;
+  font-size: 70px;
+  font-family: "Inter", sans-serif;
+}
+
+.sneaker-cards-section{
+  width: 85%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 30px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
 }

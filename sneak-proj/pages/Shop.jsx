@@ -9,7 +9,7 @@ import FilterModal from '../src/components/FilterModal';
 
 const Shop = () => {
   // Accessing store state and actions
-  const { sneakers, selectedSneaker, loading, error, setSneakers, setSelectedSneaker, setError, setIsModalOpen, isModalOpen, fetchAllSneakers } = useStore();
+  const { sneakers, selectedSneaker, loading, error, setSneakers, setSelectedSneaker, selectedBrands, setIsModalOpen, isModalOpen, fetchAllSneakers, fetchFilteredSneakers } = useStore();
 
   const controls = useAnimation();
 
@@ -19,25 +19,27 @@ const Shop = () => {
   };
 
   useEffect(() => {
-    fetchAllSneakers(); // Fetch sneakers when the component mounts
+    if (selectedBrands.length > 0) {
+      fetchFilteredSneakers(); // Fetching sneakers based on the selected brand
+    } else {
+      fetchAllSneakers(); // Fetching all sneakers when no filters are applied
+    } // Fetching sneakers when the component mounts
     controls.start("animate");
-  }, [fetchAllSneakers, controls]); // Dependency array with fetchAllSneakers and controls
+  }, [fetchAllSneakers, fetchFilteredSneakers, selectedBrands, controls]); // Dependency array with fetchAllSneakers and controls
 
-  
 
   return (
-    <div className="w-full flex flex-col justify-center items-center mb-12 relative">
+    <div className="w-full flex flex-col justify-center items-center mb-12 ">
       <motion.h1 
         variants={slideAnimation("down")}
         initial="hidden"
         animate={controls} 
-        className='font-extrabold text-[70px] mb-4'
+        className='shop-heading'
       >
         Our Collection
       </motion.h1>
       <FilterModal />
-      <div className='mt-5 mx-28 w-[85%] min-h-[70vh] grid grid-cols-4 gap-7'>
-        
+      <div className='sneaker-cards-section'>
         {sneakers.map(sneaker => (
           <SneakerCard
             key={sneaker.id}

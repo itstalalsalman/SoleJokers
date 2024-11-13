@@ -1,9 +1,24 @@
 import React from 'react'
 import { adidasLogo, nikeLogo, vansLogo, SoleJokerPNG } from '../assets'
+import { useNavigate } from 'react-router-dom';
+import { useStore } from '../store';
 
 const OurCollection = () => {
 
-  const shoeCollection = [adidasLogo, nikeLogo, vansLogo];
+  const navigate = useNavigate();
+  const setSelectedBrands = useStore((state) => state.setSelectedBrands); // Get Zustand function to set selected brands
+
+  const shoeCollection = [
+    { logo: adidasLogo, brand: 'Adidas' },
+    { logo: nikeLogo, brand: 'Nike' },
+    { logo: vansLogo, brand: 'Vans' }
+  ];
+
+  const handleBrandClick = (brand) => {
+    setSelectedBrands([brand]); 
+    navigate('/shop'); 
+  };
+
 
   return (
     <div className='w-full flex flex-col justify-center items-center mt-28'>
@@ -16,10 +31,10 @@ const OurCollection = () => {
         <p className='font-medium text-[20px]'>Shop now and join the SoleJoker family!</p>
         <div className='w-[80%] h-[400px] mb-16 mt-14 flex flex-row justify-evenly items-center'> 
           {shoeCollection.map((item) => (
-            <div className="box">
+            <div key={item.brand} className="box" onClick={() => handleBrandClick(item.brand)}>
               <span></span>
               <div className="content cursor-pointer">
-                  <img src={item} alt='main-logo-collections'/>                
+                  <img src={item.logo} alt='main-logo-collections'/>                
               </div>
             </div>
             ))

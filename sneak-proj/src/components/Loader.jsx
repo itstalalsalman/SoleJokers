@@ -4,6 +4,7 @@ import { SoleJokerPNG } from '../assets'
 
 const Loader = () => {
   const { progress } = useProgress()
+  
   return (
     <Html center>
       <div className='w-[200px] text-[black] font-semibold flex flex-col justify-center items-center'>
