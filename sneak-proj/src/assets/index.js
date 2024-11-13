@@ -6,6 +6,7 @@ import vansLogo from './vansLogo.png';
 import githubLogo from './githubLogo.png';
 import instagramLogo from './instagramLogo.png';
 import linkedinLogo from './linkedinLogo.png';
+import avatarShoe from './avatarShoe.jpg'
 
 export {
     SoleJokerPNG,
@@ -15,5 +16,6 @@ export {
     vansLogo,
     githubLogo,
     instagramLogo,
-    linkedinLogo
+    linkedinLogo,
+    avatarShoe
 };

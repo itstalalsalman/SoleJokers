@@ -1,6 +1,6 @@
 import React from 'react';
 import { IoIosArrowRoundForward } from "react-icons/io";
-import { useStore } from '../../store';
+import { useStore } from '../store';
 
 const SneakerCard = ({ sneaker }) => {
   
@@ -12,7 +12,6 @@ const SneakerCard = ({ sneaker }) => {
     setIsModalOpen(true);
   };
 
-  console.log("asd",sneaker.image_paths[0])
   return (
     <div className="w-[270px] h-[390px] flex flex-col justify-start items-center shadow-2xl rounded-xl relative transform transition duration-300 hover:scale-110 ">
       <img src={`http://localhost:5000${sneaker.image_paths[0]}`} alt={sneaker.name} className='w-[220px] h-[270px] rounded-xl mt-5'/>

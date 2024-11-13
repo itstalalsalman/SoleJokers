@@ -1,13 +1,13 @@
 import React, { useState, createContext } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './components/Home'
+import Home from '../pages/Home'
 import './App.css'
 import Navbar from './components/Navbar';
-import Shop from './components/Shop';
-import Brands from './components/Brands';
+import Shop from '../pages/Shop';
+import Brands from '../pages/Brands';
 import LoginModal from './components/LoginModal';
 import Footer from './components/Footer';
-import { useStore } from '../store';
+import { useStore } from './store';
 
 export const ModalContext = createContext();
 

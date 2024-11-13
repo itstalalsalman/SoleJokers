@@ -15,7 +15,7 @@ const Hero = () => {
     }, []);
 
     return (
-        <div className='w-full flex justify-center items-center relative'>
+        <div className='w-full min-h-[75vh] flex justify-center items-center relative'>
             <motion.div
                 variants={slideAnimation("left")}
                 initial="hidden"

@@ -496,3 +496,66 @@
 .social-link-3:hover, .funkIt:hover{
   animation: bounce_613 0.4s linear;
 }
+
+
+.animate-open{
+    animation: openHeight 0.3s ease-in-out;
+}
+
+
+@keyframes openHeight{
+  0% {
+    height: 0px;
+  }
+  10% {
+    height: 10px;
+  }
+  20% {
+    height: 30px;
+  }
+  30% {
+    height: 40px;
+  }
+  40% {
+    height: 70px;
+  }
+
+  60% {
+    height: 100px;
+  }
+
+  80% {
+    transform: scale(1.3);
+    height: 120px;
+  }
+
+  100% {
+    transform: scale(1);
+    height: 150px;
+  }
+}
+
+.delay-opacity{
+  animation: opacityInc 0.6s ease-in-out;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+@keyframes opacityInc {
+  0%{
+    opacity: 0;
+  }
+  60%{
+    opacity: 0;
+  }
+  80%{
+    opacity: 0.8;
+    transform: scale(0.7);
+  }
+  100%{
+    opacity: 1;
+  }
+}

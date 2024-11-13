@@ -1,4 +1,4 @@
-import { useStore } from '../../store';  // Import the store for Zustand
+import { useStore } from '../store';  // Import the store for Zustand
 import React, { useContext, useState, useEffect } from 'react';
 import { ModalContext } from '../App';
 import axios from 'axios';

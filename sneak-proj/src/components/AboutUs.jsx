@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { ModalContext } from '../App';
 import Vans from './canvas/Vans'
-import { useStore } from '../../store';
+import { useStore } from '../store';
 
 const AboutUs = () => {
   const { setIsModalOpen } = useStore();

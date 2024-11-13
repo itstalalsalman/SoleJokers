@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { IoIosCart, IoMdHeart } from 'react-icons/io';
-import {useStore} from '../../store';
+import {useStore} from '../store';
 
 const ShoeDetailCard = ({ onClose }) => {
   const { selectedSneaker, isBuying, mainImg, setMainImg, setIsBuying, addToCart } = useStore();
