@@ -26,7 +26,7 @@ const Navbar = () => {
             </ul>
             {!isLoggedIn ? (<button 
                className='w-[130px] h-[45px] font-semibold text-[#529CDF] border-[3px] border-black rounded-xl rounded-br-[50px] hover:bg-[#529CDF] hover:text-white hover:transition-colors duration-200 ease-in'
-               onClick={() => isObjectLoaded && setIsModalOpen(true)}
+               onClick={() => setIsModalOpen(true)}
             >
             Login</button>) : (
                 <div 
