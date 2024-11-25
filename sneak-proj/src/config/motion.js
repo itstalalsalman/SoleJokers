@@ -21,3 +21,24 @@ export const slideAnimation = (direction) => {
         },
     };
 };
+
+export const mainAnimation = (opacity, scale) => {
+    return {
+        opacity: opacity,
+        scale: scale
+    }
+}
+
+export const transitionControls = (duration, type) => {
+    return {
+        duration: duration,
+        type: type
+    }
+}
+
+export const animationInitials = (x, opacity) => {
+    return {
+      x: x,
+      opacity: opacity
+    }
+}

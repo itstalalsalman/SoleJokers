@@ -13,7 +13,7 @@ const LoggedInDropDown = () => {
     
   return (
     <div 
-        className='w-[150px] h-[150px] absolute bottom-[-140px] shadow-2xl right-4 z-30 rounded-xl animate-open flex justify-center items-center'
+        className='w-[150px] h-[150px] absolute bottom-[-140px] shadow-2xl right-4 z-50 rounded-xl animate-open flex justify-center items-center bg-white'
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
     >

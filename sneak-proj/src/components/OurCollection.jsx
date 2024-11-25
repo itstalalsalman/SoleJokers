@@ -1,12 +1,14 @@
-import React from 'react'
-import { adidasLogo, nikeLogo, vansLogo, SoleJokerPNG } from '../assets'
+import React from 'react';
+import { adidasLogo, nikeLogo, vansLogo, SoleJokerPNG } from '../assets';
 import { useNavigate } from 'react-router-dom';
 import { useStore } from '../store';
+import { motion } from 'framer-motion';
+
+import { mainAnimation, transitionControls } from '../config/motion';
 
 const OurCollection = () => {
-
   const navigate = useNavigate();
-  const setSelectedBrands = useStore((state) => state.setSelectedBrands); // Get Zustand function to set selected brands
+  const setSelectedBrands = useStore((state) => state.setSelectedBrands); 
 
   const shoeCollection = [
     { logo: adidasLogo, brand: 'Adidas' },
@@ -21,15 +23,33 @@ const OurCollection = () => {
 
 
   return (
-    <div className='w-full flex flex-col justify-center items-center mt-28'>
-        <h1 className='font-extrabold text-[80px]'>Our Collection</h1>
-        <p className='w-[700px] text-center mb-4 mt-2 font-normal text-[18px]'>
+    <div className="w-full flex flex-col justify-center items-center mt-28">
+        <motion.h1 
+          className="font-extrabold text-[80px]"
+          initial={mainAnimation(0 , 0.4)} 
+          whileInView={mainAnimation(1, 1)} 
+          transition={transitionControls(0.8, 'spring')}
+        >
+            Our Collection</motion.h1>
+        <motion.p 
+          className="w-[700px] text-center mb-4 mt-2 font-normal text-[18px]"
+          initial={mainAnimation(0 , 0.5)} 
+          whileInView={mainAnimation(1, 1)} 
+          transition={transitionControls(1, 'spring')}
+        >
             Welcome to SoleJoker, where your feet find their happy place! Dive into our quirky collection of 
             kicks that blend fun with fashion. From bold sneakers to funky sandals, each pair is designed to make 
             you smile with every step.
-        </p>
-        <p className='font-medium text-[20px]'>Shop now and join the SoleJoker family!</p>
-        <div className='w-[80%] h-[400px] mb-16 mt-14 flex flex-row justify-evenly items-center'> 
+        </motion.p>
+        <motion.p 
+          className="font-medium text-[20px]"
+          initial={mainAnimation(0 , 0.5)} 
+          whileInView={mainAnimation(1, 1)} 
+          transition={transitionControls(1.2, 'spring')}
+        >
+          Shop now and join the SoleJoker family!
+        </motion.p>
+        <div className="w-[80%] h-[400px] mb-16 mt-14 flex flex-row justify-evenly items-center"> 
           {shoeCollection.map((item) => (
             <div key={item.brand} className="box" onClick={() => handleBrandClick(item.brand)}>
               <span></span>
@@ -37,28 +57,26 @@ const OurCollection = () => {
                   <img src={item.logo} alt='main-logo-collections'/>                
               </div>
             </div>
-            ))
-          }
+          ))}
         </div>
 
-        <div class="button-container bounce">
-          <button class="brutalist-button solejoker button-1">
-            <div class="solejoker-logo">
+        <div className="button-container bounce">
+          <button className="brutalist-button solejoker button-1">
+            <div className="solejoker-logo">
               <img
                 className="solejoker-icon"
                 src={SoleJokerPNG}
-                alt='img-btnMore'
+                alt="img-btnMore"
               />
             </div>
-            <div class="button-text">
+            <div className="button-text" onClick={() => navigate('/brand')}>
               <span>See more of</span>
               <span>SoleJokers</span>
             </div>
           </button>
         </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default OurCollection
+export default OurCollection;

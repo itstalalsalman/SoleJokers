@@ -2,6 +2,7 @@ import { useStore } from '../store';  // Import the store for Zustand
 import React, { useContext, useState, useEffect } from 'react';
 import { ModalContext } from '../App';
 import axios from 'axios';
+import { validateInputs } from '../config/expressionChecks';
 
 const LoginModal = () => {
   const { setIsModalOpen } = useContext(ModalContext);
@@ -10,6 +11,14 @@ const LoginModal = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [emailError, setEmailError] = useState({
+    state: false,
+    msg: ''
+  });
+  const [passwordError, setPasswordError] = useState({
+    state: false,
+    msg: ''
+  }); 
   
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -23,8 +32,12 @@ const LoginModal = () => {
     };
   }, [setIsModalOpen]);
 
+  
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    if(!validateInputs(email, password, setEmailError, setPasswordError)) return;
+    
     try {
       const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
       localStorage.setItem('token', response.data.token);
@@ -36,7 +49,11 @@ const LoginModal = () => {
   };
 
   const handleRegister = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
+
+    if(!validateInputs(email, password, setEmailError, setPasswordError)) return;
+
+    
     if (password !== confirmPassword) {
       console.error("Passwords do not match");
       return;
@@ -52,7 +69,7 @@ const LoginModal = () => {
   };
 
   return (
-    <div className="modal-background inter">
+    <div className="modal-background inter z-40">
       <div className="modal-container flex justify-center items-center">
         <button className="absolute top-0 right-2 text-4xl text-white hover:rotate-45 transition-all ease-in-out" onClick={() => setIsModalOpen(false)}>
           &times;
@@ -64,10 +81,22 @@ const LoginModal = () => {
             <form onSubmit={handleLogin} className='w-[80%] flex flex-col justify-center items-center'>
               <div className='w-full'>
                 <label className="block text-sm font-semibold mb-2 italic">Email</label>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full py-2 px-3 border rounded placeholder:text-[#529CDF] placeholder:opacity-50" placeholder='e.g. solejokers@gmail.com'/>
-                
+                <input
+                  type="text"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className={`w-full py-2 px-3 border ${emailError.state ? 'border-red-400 border-[2px]' : 'border'} rounded placeholder:text-[#529CDF] placeholder:opacity-50`}
+                  placeholder="e.g. solejokers@gmail.com"
+                />
+                {emailError.state && <p className="text-red-400 italic text-sm p-1">{emailError.msg}</p>}
                 <label className="block text-sm font-semibold my-2 italic">Password</label>
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full py-2 px-3 border rounded" />
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className={`w-full py-2 px-3 border ${passwordError.state ? 'border-red-400 border-[2px]' : 'border'} rounded`}
+                />
+                {passwordError.state && <p className="text-red-400 italic text-sm p-1">{passwordError.msg}</p>}
               </div>
               
               <button type="submit" className="w-[150px] h-[45px] border-black font-semibold bg-white text-[#529CDF] border-[3px] hover:border-black rounded-xl rounded-br-[50px] hover:bg-[#529CDF] hover:text-white hover:transition-colors duration-200 ease-inrounded mt-8">
@@ -84,7 +113,7 @@ const LoginModal = () => {
             <form onSubmit={handleRegister} className="w-[80%] flex flex-col justify-center items-start">
               <label className="block text-sm font-semibold mb-2 italic">Email</label>
               <input
-                type="email"
+                type="text"
                 className="w-full py-2 px-3 text-black border rounded placeholder:text-[#529CDF] placeholder:opacity-50"
                 value={email} 
                 onChange={(e) => setEmail(e.target.value)}

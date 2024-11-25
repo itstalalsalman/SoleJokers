@@ -57,6 +57,8 @@ const store = (set, get) => ({
     setPriceRange: (range) => set({ priceRange: range }),
 
     //fetching all sneaker
+    isAllSneaker: false,
+    setFetchAllSneakers: (value) => set({isAllSneaker: value}),
     fetchAllSneakers: async () => {
         try {
             set({ loading: true });
