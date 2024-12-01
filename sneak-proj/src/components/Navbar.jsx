@@ -15,7 +15,7 @@ const Navbar = () => {
   const handleMouseEnterCart = () => setIsMouseOnCart(true);
   const handleMouseLeaveCart = () => setIsMouseOnCart(false);
 
-  console.log("obj", isLoggedIn);
+  console.log("obj", isLoggedIn); //un-necessary re-renders along the navbar needs fixing ----------------
 
   return (
     <div className='w-full h-[90px] flex justify-between items-center bg-white shadow-md fixed z-50'>

@@ -38,6 +38,15 @@ const store = (set, get) => ({
         }
     },
     
+    register: async (email, password) => {
+        try {
+            const response = await axios.post('http://localhost:5000/api/auth/register', { email, password });
+            console.log('Registration successful:', response.data);
+        } catch (error) {
+            console.error('Registration error:', error.response?.data.message || error.message);
+        }
+    },
+
     logout: async () => {
         const refreshToken = localStorage.getItem('refreshToken');
         try {
@@ -46,6 +55,18 @@ const store = (set, get) => ({
           localStorage.removeItem('refreshToken');
         } catch (err) {
           console.error('Error during logout', err);
+        }
+    },
+
+    verify: async (email, verificationCode) => {
+        try {
+            const response = await axios.post('http://localhost:5000/api/auth/verify', {
+                email,
+                code: verificationCode,
+            });
+            console.log('Verification successful:', response.data);
+        } catch (error) {
+            console.error('Verification error:', error.response?.data.message || error.message);
         }
     },
     

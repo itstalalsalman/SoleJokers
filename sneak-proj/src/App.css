@@ -81,6 +81,8 @@
   transition: opacity 0.3s ease-in-out;
 }
 
+
+
 .modal-container {
   background-color: white;
   width: 60%;
@@ -89,6 +91,16 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   animation: popUp 0.5s ease-in-out;
   position: relative;
+}
+
+.verification-modal-container{
+  background: linear-gradient(
+    135deg, 
+    #529CDF, /* Blue */
+    white 50%,
+    white 70%, /* White at the center */
+    #529CDF 90% /* Black at the edge */
+  );
 }
 
 .sneaker-detail{
