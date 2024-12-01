@@ -39,9 +39,7 @@ const LoginModal = () => {
     if(!validateInputs(email, password, setEmailError, setPasswordError)) return;
     
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
-      localStorage.setItem('token', response.data.token);
-      login();  // Update global login state using Zustand
+      await login(email, password);
       setIsModalOpen(false);
     } catch (error) {
       console.error('Login error:', error.response?.data.message || error.message);
@@ -61,7 +59,7 @@ const LoginModal = () => {
     try {
       const response = await axios.post('http://localhost:5000/api/auth/register', { email, password });
       console.log('Registration successful:', response.data);
-      login();  // Update global login state using Zustand
+      await login(email, password);  // Update global login state using Zustand
       setIsModalOpen(false);
     } catch (error) {
       console.error('Registration error:', error.response?.data.message || error.message);

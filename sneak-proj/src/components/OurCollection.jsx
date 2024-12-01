@@ -69,7 +69,7 @@ const OurCollection = () => {
                 alt="img-btnMore"
               />
             </div>
-            <div className="button-text" onClick={() => navigate('/brand')}>
+            <div className="button-text" onClick={() => navigate('/brands')}>
               <span>See more of</span>
               <span>SoleJokers</span>
             </div>

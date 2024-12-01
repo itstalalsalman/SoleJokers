@@ -12,9 +12,50 @@ const store = (set, get) => ({
     setIsModalOpen: (value) => set({ isModalOpen: value }),
 
     // Authentication state
+    accessToken: null,
+    refreshToken: null,
     isLoggedIn: false, // Default value for login status
-    login: () => set({ isLoggedIn: true }), // Set login status to true
-    logout: () => set({ isLoggedIn: false }), // Set login status to false
+    setTokens: (accessToken, refreshToken) => set({ accessToken, refreshToken, isLoggedIn: true }),
+    clearTokens: () => set({ accessToken: null, refreshToken: null, isLoggedIn: false }),
+    login: async (email, password) => {
+        try {
+          const { data } = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+          set({ accessToken: data.accessToken, refreshToken: data.refreshToken, isLoggedIn: true });
+          localStorage.setItem('refreshToken', data.refreshToken);
+        } catch (err) {
+          console.error(err);
+        }
+    },
+    refreshAccessToken: async () => {
+        const refreshToken = localStorage.getItem('refreshToken');
+        if (!refreshToken) return;
+    
+        try {
+          const { data } = await axios.post('http://localhost:5000/api/auth/refresh', { refreshToken });
+          set({ accessToken: data.accessToken });
+        } catch (err) {
+          console.error('Error refreshing access token', err);
+        }
+    },
+    
+    logout: async () => {
+        const refreshToken = localStorage.getItem('refreshToken');
+        try {
+          await axios.post('http://localhost:5000/api/auth/logout', { refreshToken });
+          set({ accessToken: null, refreshToken: null, isLoggedIn: false });
+          localStorage.removeItem('refreshToken');
+        } catch (err) {
+          console.error('Error during logout', err);
+        }
+    },
+    
+    initializeAuth: async () => {
+        const refreshToken = localStorage.getItem('refreshToken');
+        if (refreshToken) {
+          await useStore.getState().refreshAccessToken();
+          set({ isLoggedIn: true });
+        }
+    },
 
     //Showing Logged In Avatar hover states
     isMouseOnAvatar: false,

@@ -1,4 +1,4 @@
-import React, { createContext, Suspense, useState } from 'react';
+import React, { createContext, Suspense, useEffect, useState } from 'react';
 import { BrowserRouter as Router, useLocation } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
@@ -60,7 +60,13 @@ const CachedRoutes = () => {
 };
 
 const App = () => {
-  const { isModalOpen, setIsModalOpen } = useStore();
+  const { isModalOpen, setIsModalOpen, initializeAuth } = useStore();
+  useEffect(() => {
+    const initAuth = async () => {
+      await initializeAuth();
+    };
+    initAuth();
+  }, [initializeAuth]);
 
   return (
     <ModalContext.Provider value={{ isModalOpen, setIsModalOpen }}>
