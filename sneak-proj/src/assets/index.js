@@ -7,7 +7,7 @@ import githubLogo from './githubLogo.png';
 import instagramLogo from './instagramLogo.png';
 import linkedinLogo from './linkedinLogo.png';
 import avatarShoe from './avatarShoe.jpg'
-
+import checkout from './checkout.png'
 export {
     SoleJokerPNG,
     cart,
@@ -17,5 +17,6 @@ export {
     githubLogo,
     instagramLogo,
     linkedinLogo,
-    avatarShoe
+    avatarShoe,
+    checkout
 };

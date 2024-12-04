@@ -1,10 +1,38 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { IoIosCart, IoMdHeart } from 'react-icons/io';
 import {useStore} from '../store';
+import { checkout } from '../assets';
+import axios from 'axios';
 
 const ShoeDetailCard = ({ onClose }) => {
-  const { selectedSneaker, isBuying, mainImg, setMainImg, setIsBuying, addToCart } = useStore();
+  const navigate = useNavigate();
+  const { selectedSneaker, cartItems, userId, setIsModalOpen , setSelectedSneaker, accessToken,isBuying, mainImg, isLoggedIn, setMainImg, setIsBuying, addToCart } = useStore();
+  const debounceTimeout = useRef(null);
+  const [quantity, setQuantity] = useState(1);
+  
+  const debouncedAddToCart = useCallback((cartItem, shoeSize = 44) => {
+    if (debounceTimeout.current) {
+      clearTimeout(debounceTimeout.current);
+    }
+    const item = {
+      shoeId: cartItem.id,
+      quantity: 1,
+      shoeSize: shoeSize,
+      img_url: cartItem.image_paths[0],
+    }
+    console.log(accessToken)
+    console.log(item)
+    debounceTimeout.current = setTimeout(async () => {
+      try {
+        const response = await axios.post('http://localhost:5000/api/cart/add', item, {headers: {Authorization: `Bearer ${accessToken}`}});
+        console.log('Item added to cart:', response.data);
+      } catch (error) {
+        console.error('Error adding to cart:', error);
+      }
+    }, 1000); // Adjust the delay as needed (e.g., 1000ms = 1 second)
+  }, []);
 
   // Setting initial image when sneaker is selected
   useEffect(() => {
@@ -14,6 +42,28 @@ const ShoeDetailCard = ({ onClose }) => {
   }, [selectedSneaker, setMainImg]);
 
   if (!selectedSneaker) return null;
+
+  console.log(selectedSneaker)
+
+  const handleCart = () => {
+    setIsBuying(true);
+    addToCart(selectedSneaker);
+    if(!isLoggedIn){
+
+    }else{
+      debouncedAddToCart(selectedSneaker);
+    }
+  }
+
+  const handleCheckout = () => {
+    if(!isLoggedIn){
+      //console.log(selectedSneaker.id)
+      setSelectedSneaker(null)
+    } else{
+      setIsModalOpen(false)
+      navigate('/checkout')
+    }
+  }
 
   return (
     <div className="fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center z-50 bg-black bg-opacity-50">
@@ -58,10 +108,7 @@ const ShoeDetailCard = ({ onClose }) => {
                   <IoMdHeart />
                 </button>
                 <button
-                  onClick={() => {
-                    setIsBuying(true);
-                    addToCart(selectedSneaker); // Add sneaker to cart when clicking "Add to Cart"
-                  }}
+                  onClick={handleCart}
                   className='w-10 h-10 rounded-full flex justify-center items-center text-[#529CDF] border-[3px] border-black hover:bg-[#529CDF] hover:text-white hover:transition-colors duration-200 ease-in cursor-pointer'
                 >
                   <IoIosCart />
@@ -70,7 +117,7 @@ const ShoeDetailCard = ({ onClose }) => {
             ) : (
               <div className='flex justify-center items-center gap-5'>
                 <button className='btnContinueShopping animate-bounceIn' onClick={onClose}>Continue Shopping</button>
-                <button className='btnCheckout animate-bounceIn delay-100'>Checkout</button>
+                <button className='btnCheckout animate-bounceIn delay-100 flex justify-center items-center gap-1' onClick={handleCheckout}>{isLoggedIn ? 'Checkout' : `Login `} {!isLoggedIn && <img src={checkout} className='w-[20px]'/>}</button>
               </div>
             )}
           </div>

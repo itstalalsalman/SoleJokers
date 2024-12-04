@@ -111,6 +111,8 @@ const store = (set, get) => ({
     })),
     resetSelectedSneaker: () => set({ selectedSneaker: null }),
 
+
+
     //Filter functionality
     selectedBrands: [],
     priceRange: { min: '', max: '' },
@@ -156,7 +158,6 @@ const store = (set, get) => ({
 
     resetFilters: () => {
         set({ selectedBrands: [], priceRange: { min: '', max: '' } })
-    
     },
 
 
