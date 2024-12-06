@@ -1,8 +1,8 @@
 import React from 'react';
 import { useStore } from '../store';
 
-const EditUserInfoForm = ({ formData, handleInputChange, handleSubmit }) => {
-  const { hasEnteredInfo } = useStore();
+const EditUserInfoForm = ({ handleInputChange, handleSubmit }) => {
+  const { hasEnteredInfo, formData } = useStore();
 
   return (
     <div className="w-full h-auto space-y-4">
@@ -100,8 +100,8 @@ const EditUserInfoForm = ({ formData, handleInputChange, handleSubmit }) => {
       {/* Submit Button */}
       <button
         onClick={handleSubmit}
-        className="px-4 py-2 bg-green-500 text-white rounded-md mt-4"
-      >
+        className='w-[130px] h-[45px] font-semibold text-[#529CDF] border-[3px] border-black rounded-xl rounded-br-[50px] hover:bg-[#529CDF] hover:text-white hover:transition-colors duration-200 ease-in'
+         >
         {hasEnteredInfo ? 'Update' : 'Save'}
       </button>
     </div>

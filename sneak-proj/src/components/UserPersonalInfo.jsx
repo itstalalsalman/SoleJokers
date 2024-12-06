@@ -1,6 +1,8 @@
 import React from 'react'
+import { useStore } from '../store';
 
-const UserPersonalInfo = ({formData}) => {
+const UserPersonalInfo = () => {
+    const {formData} = useStore();
     const headingStyle = `font-semibold text-[18px]`;
     const outputDivStyles = `flex flex-col justify-start items-start`;
     const outputStyle = `text-[16px]`;

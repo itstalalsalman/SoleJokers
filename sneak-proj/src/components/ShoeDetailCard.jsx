@@ -32,7 +32,7 @@ const ShoeDetailCard = ({ onClose }) => {
       } catch (error) {
         console.error('Error adding to cart:', error);
       }
-    }, 2000); // Adjust the delay as needed (e.g., 1000ms = 1 second)
+    }, 10000); // Adjust the delay as needed (e.g., 1000ms = 1 second)
   }, []);
 
   // Setting initial image when sneaker is selected

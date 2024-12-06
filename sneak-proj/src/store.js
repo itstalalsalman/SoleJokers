@@ -13,6 +13,19 @@ const store = (set, get) => ({
     isModalOpen: false,
     setIsModalOpen: (value) => set({ isModalOpen: value }),
 
+    formData: {
+        name: '',
+        surname: '',
+        country: '',
+        city: '',
+        district: '',
+        address: '',
+        postalCode: '',
+    },
+    setFormData: (value) => set((state) => ({
+        formData: { ...state.formData, ...value }, // Properly merging of values
+    })),
+
     // Authentication state
     accessToken: null,
     refreshToken: null,
@@ -55,7 +68,21 @@ const store = (set, get) => ({
         const refreshToken = localStorage.getItem('refreshToken');
         try {
           await axios.post('http://localhost:5000/api/auth/logout', { refreshToken });
-          set({ accessToken: null, refreshToken: null, isLoggedIn: false });
+          set(
+            { 
+                accessToken: null, 
+                refreshToken: null, 
+                isLoggedIn: false, 
+                formData: {
+                    name: '',
+                    surname: '',
+                    country: '',
+                    city: '',
+                    district: '',
+                    address: '',
+                    postalCode: '',
+                }, 
+            });
           localStorage.removeItem('refreshToken');
 
         } catch (err) {
@@ -185,6 +212,7 @@ const store = (set, get) => ({
     // Action to save user information to the backend (first-time submission)
     saveUserInfo: async (newInfo) => {
         try {
+            console.log(newInfo);
           const { accessToken } = get();   
           await axios.post('http://localhost:5000/api/user/setUserInfo', newInfo, {headers: {Authorization: `Bearer ${accessToken}`}}); // Replace with your API endpoint
           set({ userInfo: newInfo, hasEnteredInfo: true });
@@ -207,4 +235,4 @@ const log = (config) => (set,get,api) => config(
 
 export const useStore = create(store);
 
-// export const useStore = create(log(persist(devtools(store), {name: "store"})));
+// export const useStore = create(log(persist(devtools(store), {name: "store", partialize: (state) => ({accessToken: state.accessToken, refreshToken: state.refreshToken, isLoggedIn: state.isLoggedIn, hasEnteredInfo: state.hasEnteredInfo,}),})));
