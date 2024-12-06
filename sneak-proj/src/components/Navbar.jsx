@@ -7,7 +7,7 @@ import LoggedInDropDown from './LoggedInDropDown';
 import CartDropDown from './CartDropDown';
 
 const Navbar = () => {
-  const { setIsModalOpen, isLoggedIn, setIsMouseOnAvatar, isMouseOnAvatar, setIsMouseOnCart, isMouseOnCart, setFetchAllSneakers } = useStore();
+  const { setIsModalOpen, isLoggedIn, setIsMouseOnAvatar, isMouseOnAvatar, setIsMouseOnCart, isMouseOnCart, setFetchAllSneakers, cartItems } = useStore();
 
   const handleMouseEnterAvatar = () => setIsMouseOnAvatar(true);
   const handleMouseLeaveAvatar = () => setIsMouseOnAvatar(false);
@@ -56,7 +56,7 @@ const Navbar = () => {
         )}
 
         <div
-          className='w-[50px] h-full flex justify-center items-center'
+          className='w-[50px] h-full flex justify-center items-center relative'
           onMouseEnter={handleMouseEnterCart}
           onMouseLeave={handleMouseLeaveCart}
         >
@@ -66,6 +66,9 @@ const Navbar = () => {
             alt='cart'
             aria-label="Shopping cart"
           />
+          {cartItems.length > 0 &&
+            <p className='absolute top-5 right-0 w-4 h-4 rounded-full bg-[#529CDF] text-white text-xs text-center font-semibold'>{cartItems.length}</p>
+          }
         </div>
 
         {(isLoggedIn && isMouseOnAvatar) && <LoggedInDropDown />}

@@ -8,9 +8,10 @@ import axios from 'axios';
 
 const ShoeDetailCard = ({ onClose }) => {
   const navigate = useNavigate();
-  const { selectedSneaker, cartItems, userId, setIsModalOpen , setSelectedSneaker, accessToken,isBuying, mainImg, isLoggedIn, setMainImg, setIsBuying, addToCart } = useStore();
+  const { selectedSneaker, cartItems, userId, setIsModalOpen , setSelectedSneaker, accessToken, mainImg, isLoggedIn, setMainImg, addToCart } = useStore();
   const debounceTimeout = useRef(null);
   const [quantity, setQuantity] = useState(1);
+  const [isBuying, setIsBuying] = useState(false)
   
   const debouncedAddToCart = useCallback((cartItem, shoeSize = 44) => {
     if (debounceTimeout.current) {
@@ -31,7 +32,7 @@ const ShoeDetailCard = ({ onClose }) => {
       } catch (error) {
         console.error('Error adding to cart:', error);
       }
-    }, 1000); // Adjust the delay as needed (e.g., 1000ms = 1 second)
+    }, 2000); // Adjust the delay as needed (e.g., 1000ms = 1 second)
   }, []);
 
   // Setting initial image when sneaker is selected
@@ -42,8 +43,6 @@ const ShoeDetailCard = ({ onClose }) => {
   }, [selectedSneaker, setMainImg]);
 
   if (!selectedSneaker) return null;
-
-  console.log(selectedSneaker)
 
   const handleCart = () => {
     setIsBuying(true);

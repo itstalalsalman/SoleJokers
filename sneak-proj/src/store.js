@@ -3,6 +3,8 @@ import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
 const store = (set, get) => ({
+    email: '',
+    setEmail: (value) => set({email: value}),
     //object loading states
     isObjectLoaded: false,
     setIsObjectLoaded: (value) => set({isObjectLoaded: value}),
@@ -15,12 +17,14 @@ const store = (set, get) => ({
     accessToken: null,
     refreshToken: null,
     isLoggedIn: false, // Default value for login status
-    setTokens: (accessToken, refreshToken) => set({ accessToken, refreshToken, isLoggedIn: true }),
-    clearTokens: () => set({ accessToken: null, refreshToken: null, isLoggedIn: false }),
+    hasEnteredInfo: false,
+    setTokens: (accessToken, refreshToken) => set({ accessToken, refreshToken, isLoggedIn: true, hasEnteredInfo: true }),
+    clearTokens: () => set({ accessToken: null, refreshToken: null, isLoggedIn: false, hasEnteredInfo: false }),
     login: async (email, password) => {
         try {
           const { data } = await axios.post('http://localhost:5000/api/auth/login', { email, password });
-          set({ accessToken: data.accessToken, refreshToken: data.refreshToken, isLoggedIn: true });
+          console.log(data)
+          set({ accessToken: data.accessToken, refreshToken: data.refreshToken, isLoggedIn: true, hasEnteredInfo: data.hasEnteredInfo });
           localStorage.setItem('refreshToken', data.refreshToken);
         } catch (err) {
           console.error(err);
@@ -53,6 +57,7 @@ const store = (set, get) => ({
           await axios.post('http://localhost:5000/api/auth/logout', { refreshToken });
           set({ accessToken: null, refreshToken: null, isLoggedIn: false });
           localStorage.removeItem('refreshToken');
+
         } catch (err) {
           console.error('Error during logout', err);
         }
@@ -74,7 +79,7 @@ const store = (set, get) => ({
         const refreshToken = localStorage.getItem('refreshToken');
         if (refreshToken) {
           await useStore.getState().refreshAccessToken();
-          set({ isLoggedIn: true });
+          set({ isLoggedIn: true, hasEnteredInfo: true });
         }
     },
 
@@ -160,6 +165,34 @@ const store = (set, get) => ({
         set({ selectedBrands: [], priceRange: { min: '', max: '' } })
     },
 
+    hasEnteredInfo: false, // Boolean indicating if user info is entered
+    userInfo: null, // Object to store user information
+
+    // Action to set the hasEnteredInfo flag
+    setHasEnteredInfo: (status) => set({ hasEnteredInfo: status }),
+
+
+    fetchUserInfo: async () => {
+        try {
+            const { accessToken } = get();   
+            const response = await axios.get('http://localhost:5000/api/user/getUserInfo', {headers: {Authorization: `Bearer ${accessToken}`}}); // Replace with your API endpoint
+            set({ userInfo: response.data, hasEnteredInfo: true });
+        } catch (error) {
+            console.error('Error fetching user info:', error);
+        }
+    },
+    
+    // Action to save user information to the backend (first-time submission)
+    saveUserInfo: async (newInfo) => {
+        try {
+          const { accessToken } = get();   
+          await axios.post('http://localhost:5000/api/user/setUserInfo', newInfo, {headers: {Authorization: `Bearer ${accessToken}`}}); // Replace with your API endpoint
+          set({ userInfo: newInfo, hasEnteredInfo: true });
+        } catch (error) {
+          console.error('Error saving user info:', error);
+      }
+    },
+    
 
 });
 

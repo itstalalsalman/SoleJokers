@@ -9,6 +9,7 @@ import LoginModal from './components/LoginModal'
 import Home from './pages/Home';
 import Brands from './pages/Brands';
 import Checkout from './pages/Checkout';
+import AccountDetails from './pages/AccountDetails';
 
 export const ModalContext = createContext();
 
@@ -36,6 +37,10 @@ const CachedRoutes = () => {
         case '/checkout':
           return (
               <Checkout />
+        );
+        case '/accountDetails':
+          return (
+              <AccountDetails />
         );
         default:
           return (

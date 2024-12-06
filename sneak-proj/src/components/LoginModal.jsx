@@ -6,9 +6,8 @@ import { validateInputs } from '../config/expressionChecks';
 
 const LoginModal = () => {
   const { setIsModalOpen } = useContext(ModalContext);
-  const { login, register, verify } = useStore((state) => state);  // Use Zustand's login action
+  const { login, register, verify, email, setEmail } = useStore((state) => state);  // Use Zustand's login action
   const [isRegisterView, setIsRegisterView] = useState(false);
-  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isVerificationView, setIsVerificationView] = useState(false);

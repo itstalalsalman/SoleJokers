@@ -28,7 +28,7 @@ const Shop = () => {
 
 
   return (
-    <div className="w-full h- flex flex-col justify-center items-center mb-12 z-0">
+    <div className="w-full min-h-[100vh] flex flex-col justify-center items-center mb-12 z-0">
       <motion.h1 
         variants={slideAnimation("down")}
         initial="hidden"
