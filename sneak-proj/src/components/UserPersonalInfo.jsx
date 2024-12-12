@@ -6,7 +6,6 @@ const UserPersonalInfo = () => {
     const headingStyle = `font-semibold text-[18px]`;
     const outputDivStyles = `flex flex-col justify-start items-start`;
     const outputStyle = `text-[16px]`;
-    console.log(formData.address)
 
   return (
         <div className='w-full flex flex-col justify-start items-start gap-2'>

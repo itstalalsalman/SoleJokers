@@ -35,7 +35,7 @@ const store = (set, get) => ({
     clearTokens: () => set({ accessToken: null, refreshToken: null, isLoggedIn: false, hasEnteredInfo: false }),
     login: async (email, password) => {
         try {
-          const { data } = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+          const { data } = await axios.post('https://solejoker-server.vercel.app/api/auth/login', { email, password });
           console.log(data)
           set({ accessToken: data.accessToken, refreshToken: data.refreshToken, isLoggedIn: true, hasEnteredInfo: data.hasEnteredInfo });
           localStorage.setItem('refreshToken', data.refreshToken);
@@ -48,7 +48,7 @@ const store = (set, get) => ({
         if (!refreshToken) return;
     
         try {
-          const { data } = await axios.post('http://localhost:5000/api/auth/refresh', { refreshToken });
+          const { data } = await axios.post('https://solejoker-server.vercel.app/api/auth/refresh', { refreshToken });
           set({ accessToken: data.accessToken });
         } catch (err) {
           console.error('Error refreshing access token', err);
@@ -67,7 +67,7 @@ const store = (set, get) => ({
     logout: async () => {
         const refreshToken = localStorage.getItem('refreshToken');
         try {
-          await axios.post('http://localhost:5000/api/auth/logout', { refreshToken });
+          await axios.post('https://solejoker-server.vercel.app/api/auth/logout', { refreshToken });
           set(
             { 
                 accessToken: null, 
@@ -160,7 +160,7 @@ const store = (set, get) => ({
             set({ loading: true });
 
             // Fetch all sneakers from the API
-            const response = await axios.get('http://localhost:5000/api/shoes');
+            const response = await axios.get('https://solejoker-server.vercel.app/api/shoes');
 
             // Update the sneakers state with the fetched data
             set({ sneakers: response.data, loading: false });
@@ -180,7 +180,7 @@ const store = (set, get) => ({
             if (priceRange.min) params.minPrice = priceRange.min;
             if (priceRange.max) params.maxPrice = priceRange.max;
         
-            const response = await axios.get('http://localhost:5000/api/shoes/showFilter', { params });
+            const response = await axios.get('https://solejoker-server.vercel.app/api/shoes/showFilter', { params });
             set({ sneakers: response.data, loading: false });
             } catch (error) {
             console.error('Error fetching sneakers:', error);
@@ -202,7 +202,7 @@ const store = (set, get) => ({
     fetchUserInfo: async () => {
         try {
             const { accessToken } = get();   
-            const response = await axios.get('http://localhost:5000/api/user/getUserInfo', {headers: {Authorization: `Bearer ${accessToken}`}}); // Replace with your API endpoint
+            const response = await axios.get('https://solejoker-server.vercel.app/api/user/getUserInfo', {headers: {Authorization: `Bearer ${accessToken}`}}); // Replace with your API endpoint
             set({ userInfo: response.data, hasEnteredInfo: true });
         } catch (error) {
             console.error('Error fetching user info:', error);
@@ -214,7 +214,7 @@ const store = (set, get) => ({
         try {
             console.log(newInfo);
           const { accessToken } = get();   
-          await axios.post('http://localhost:5000/api/user/setUserInfo', newInfo, {headers: {Authorization: `Bearer ${accessToken}`}}); // Replace with your API endpoint
+          await axios.post('https://solejoker-server.vercel.app/api/user/setUserInfo', newInfo, {headers: {Authorization: `Bearer ${accessToken}`}}); // Replace with your API endpoint
           set({ userInfo: newInfo, hasEnteredInfo: true });
         } catch (error) {
           console.error('Error saving user info:', error);

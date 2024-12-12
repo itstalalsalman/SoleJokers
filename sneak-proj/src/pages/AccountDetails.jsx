@@ -18,14 +18,15 @@ const AccountDetails = () => {
     saveUserInfo,
   } = useStore();
 
-  
   const [isEditView, setIsEditView] = useState(false);
+
+  const fetchData = () => fetchUserInfo(); // Dependency on a function reference
 
   useEffect(() => {
     if (hasEnteredInfo) {
-      fetchUserInfo();
+      fetchData();
     }
-  }, [hasEnteredInfo, fetchUserInfo]);
+  }, [hasEnteredInfo, fetchData]);
 
   useEffect(() => {
     if (userInfo) {

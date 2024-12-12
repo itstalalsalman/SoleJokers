@@ -27,7 +27,7 @@ const ShoeDetailCard = ({ onClose }) => {
     console.log(item)
     debounceTimeout.current = setTimeout(async () => {
       try {
-        const response = await axios.post('http://localhost:5000/api/cart/add', item, {headers: {Authorization: `Bearer ${accessToken}`}});
+        const response = await axios.post('https://solejoker-server.vercel.app/api/cart/add', item, {headers: {Authorization: `Bearer ${accessToken}`}});
         console.log('Item added to cart:', response.data);
       } catch (error) {
         console.error('Error adding to cart:', error);

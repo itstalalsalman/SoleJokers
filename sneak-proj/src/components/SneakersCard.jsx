@@ -14,7 +14,7 @@ const SneakerCard = ({ sneaker }) => {
 
   return (
     <div className="w-[270px] h-[390px] flex flex-col justify-start items-center shadow-2xl rounded-xl relative transform transition duration-300 hover:scale-110 ">
-      <img src={`http://localhost:5000${sneaker.image_paths[0]}`} alt={sneaker.name} className='w-[220px] h-[270px] rounded-xl mt-5'/>
+      <img src={`https://solejoker-server.vercel.app${sneaker.image_paths[0]}`} alt={sneaker.name} className='w-[220px] h-[270px] rounded-xl mt-5'/>
       <div className='w-[210px] mt-6 flex justify-between items-center'>
         <div className='flex flex-col justify-center items-start'>
           <h2 className='font-medium text-[14px]'>{sneaker.name}</h2>
